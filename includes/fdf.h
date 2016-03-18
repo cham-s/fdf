@@ -3,6 +3,13 @@
 #include "libft.h"
 #include "mlx.h"
 
+typedef struct	s_img
+{
+	int		bpp;
+	int		sizeline;
+	int		endian;
+}				t_img;
+
 typedef struct	s_point
 {
 	int x;
@@ -10,10 +17,11 @@ typedef struct	s_point
 	int z;
 }				t_point;
 
-typedef struct	s_mlx_ret
+typedef struct	s_mlx
 {
 	void *mlx;
 	void *win;
-}				t_mlx_ret;
+	void *img;
+}				t_mlx;
 
 #endif
