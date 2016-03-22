@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-int		is_alphanumeric(const char *s)
+int		is_numeric(const char *s)
 {
 	size_t i;
 
@@ -9,29 +9,61 @@ int		is_alphanumeric(const char *s)
 		return (0);
 	while (s[i])
 	{
-		if (!ft_isalnum(s[i]))
+		if (s[i] < '0' && s[i] > '9' && s[i] != ' ')
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-int		check_line(char *line)
+int		is_space(char c)
 {
-	if (!is_alphanumeric(line))
-		return (-1);
+	return (c == ' ');
 }
 
-int		parse_file(int fd, int **map, t_list *lines)
+int		linesize(char *l)
 {
-	line	*line;
-	size_t tab_size;
-	size_t next_split;
+	size_t	i;
+	int		s;
 
-	while (get_next_line(fd, &line))
+	i = 0;
+	s = 0;
+	while (l[i])
 	{
-		wh
+		if (is_space(l[i]) && l[i + 1] && is_space(l[i + 1]))
+			return (-1);
+		if (!l[i + 1] && is_space(l[i]))
+			return (-1);
+		if (is_space(l[i]) && !is_space[i + 1])
+			s++;
+		i++;
 	}
+	return (s + 2);
+}
+
+int		check_line(char *line)
+{
+	int line_sz;
+
+	line_sz = 0;
+	if (!is_numeric(line))
+		return (-1);
+	if ((*line_sz = linesize(line)) == -1)
+		return (-1);
+	return (line_sz);
+}
+
+int		parse_file(int fd, t_env *env, t_list *lines)
+{
+	while (get_next_line(fd, &line) > 0)
+	{
+
+		if (lines->linesize = check_line(line) == -1)
+			return (-1);
+		else 
+			lst_linepushback(lines, lstline);
+	}
+	if (lines->line)
 }
 
 /* void    pixel_put_image(char *data, t_img *img, int x, int y) */
