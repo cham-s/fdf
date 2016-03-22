@@ -30,11 +30,11 @@ typedef struct	s_env
 	double		const_y_iso;
 	void		*win_para;
 	t_img		*img_para;
-	t_point		*map_iso;
+	t_point		*map_para;
 	double		const_para;
 	double		zoom_z;
-	t_key		key;
-}
+	//t_key		key;
+}				t_env;
 
 typedef struct	s_line
 {
@@ -44,4 +44,5 @@ typedef struct	s_line
 	void		*next;
 }				t_line;
 
+void	env(t_env *e);
 #endif

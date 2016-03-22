@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-int		is_alphanumeric(const char *s)
+/*int		is_alphanumeric(const char *s)
 {
 	size_t i;
 
@@ -32,7 +32,7 @@ int		parse_file(int fd, int **map, t_list *lines)
 	{
 		wh
 	}
-}
+}*/
 
 /* void    pixel_put_image(char *data, t_img *img, int x, int y) */
 /* { */
@@ -60,23 +60,13 @@ int		parse_file(int fd, int **map, t_list *lines)
 
 int main()
 {
-	/* t_mlx	ret_mlx; */
-	/* t_img	img; */
-	/* t_point p1; */
-	/* t_point p2; */
-	/* char	*data; */
-    /*  */
-	/* p1.x = 100; */
-	/* p1.y = 100; */
-    /*  */
-	/* p2.x = 200; */
-	/* p1.y = 200; */
-    /*  */
-	/* ret_mlx.mlx = mlx_init(); */
-	/* ret_mlx.img = mlx_new_image(ret_mlx.mlx, 1000, 1000); */
-	/* data = mlx_get_data_addr(ret_mlx.img , &(img.bpp), &(img.sizeline), &(img.endian)); */
-	/* drawline(&p1, &p2, data, &img); */
-	/* ret_mlx.win = mlx_new_window(ret_mlx.mlx, 1000, 1000, "Test" ); */
-	/* mlx_put_image_to_window(ret_mlx.mlx, ret_mlx.win, ret_mlx.img, 0, 0); */
-	/* mlx_loop(ret_mlx.mlx); */
+	t_env *e;
+	
+	e = (t_env *)malloc(sizeof(t_env));
+	e->img_iso = (t_img *)malloc(sizeof(t_img));
+	e->map_iso = (t_point *)malloc(sizeof(t_point));
+	e->img_para = (t_img *)malloc(sizeof(t_img));
+	e->map_para = (t_point *)malloc(sizeof(t_point));
+	env(e);
+	return (0);
 }
