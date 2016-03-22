@@ -3,6 +3,11 @@
 #include "libft.h"
 #include "mlx.h"
 
+#define SIZE_ISO_WIDTH 2550
+#define SIZE_ISO_WEIGHT 720
+#define SIZE_PARA_WIDTH 2550
+#define SIZE_PARA_WEIGHT 720
+
 typedef struct	s_img
 {
 	char		*data;
