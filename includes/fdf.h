@@ -9,6 +9,7 @@ typedef struct	s_img
 	int			bpp;
 	int			size_line;
 	int			endian;
+	void		*img;
 }				t_img;
 
 typedef struct	s_point
