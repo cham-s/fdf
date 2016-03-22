@@ -24,4 +24,12 @@ typedef struct	s_mlx
 	void *img;
 }				t_mlx;
 
+typedef struct	s_line
+{
+	char	*line;
+	int		len;
+	struct	s_line *prev;
+	struct	s_line *next;
+}				t_line;
+
 #endif
