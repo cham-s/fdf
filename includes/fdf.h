@@ -5,31 +5,42 @@
 
 typedef struct	s_img
 {
-	int		bpp;
-	int		sizeline;
-	int		endian;
+	char		*data;
+	int			bpp;
+	int			size_line;
+	int			endian;
 }				t_img;
 
 typedef struct	s_point
 {
-	int x;
-	int y;
-	int z;
+	int			x;
+	int			y;
+	int			z;
+	void		*next;
 }				t_point;
 
-typedef struct	s_mlx
+typedef struct	s_env
 {
-	void *mlx;
-	void *win;
-	void *img;
-}				t_mlx;
+	void		*mlx;
+	void		*win_iso;
+	t_img		*img_iso;
+	t_point		*map_iso;
+	double		const_x_iso;
+	double		const_y_iso;
+	void		*win_para;
+	t_img		*img_para;
+	t_point		*map_iso;
+	double		const_para;
+	double		zoom_z;
+	t_key		key;
+}
 
 typedef struct	s_line
 {
-	char	*line;
-	int		len;
-	struct	s_line *prev;
-	struct	s_line *next;
+	char		*line;
+	int			len;
+	void		*prev;
+	void		*next;
 }				t_line;
 
 #endif
