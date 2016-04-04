@@ -1,20 +1,26 @@
-void	parse(t_env *e, int fd)
-{
-	int ret;
-	int x1;
-	int y1;
-	
-	x1 = 0;
-	y1 = 0;
-	ret = read(fd, buff, BUFF_SIZE);
-	buff[ret] = '\0';
-	ret = -1;
-	while (buff[++ret] != '\0')
-	{
-		if (buff[ret] > 29 && buff[ret] < 40)
-		{
-			e->map_para->x = 
-		}
-	}
+#include "fdf.h"
 
+void	file_line_len(char *filename)
+{
+	int	fd;
+	int	i;
+
+	i = 0;
+	fd = open(filename, O_RDONLY);
+	while (get_next_line > 0)
+	{
+	}
+}
+
+void	getpoints(char *file, t_env *e)
+{
+	int		fd;
+	char	*line;
+
+	fd = open(file, O_RDONLY);
+	while (get_next_line(n) > 0)
+	{
+		split(line)
+		e->map = 
+	}
 }

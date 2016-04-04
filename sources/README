@@ -1,8 +1,0 @@
-alors faut refaire un parseur qui va stocker directement dans une liste chainee
-t point x en fonction du nombre d incrementation
-y en fonction du nombre de \n en remettant a 0 le x
-et z en fonction du nombre ecrit sur la map
-tu me stock tout sa soit dans le map_para soit dans map_iso tant que au final 
-tu fais une copie de l un dans l autre une fois fini afin que les 2 aient la map
-normalement tout le reste et gerer et je vais voir tout ca plus tard dans la jouree
-

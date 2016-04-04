@@ -7,6 +7,7 @@ void	pixel_put_image(char *datam t_img *img, int x, int y)
 	z = 0xff0000;
 	((int *) data)[SIZE_PARA_WIDTH * y + z] = z;
 }
+
 t_point	*3d_iso(t_env *e)
 {
 	t_point 	*begin;

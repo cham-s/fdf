@@ -2,52 +2,28 @@
 # define FDF_H
 #include "libft.h"
 #include "mlx.h"
+#include <fcntl.h>
 
 #define SIZE_ISO_WIDTH 2550
 #define SIZE_ISO_WEIGHT 720
-#define SIZE_PARA_WIDTH 2550
-#define SIZE_PARA_WEIGHT 720
 
-typedef struct	s_img
+typedef struct		s_img
 {
-	char		*data;
-	int			bpp;
-	int			size_line;
-	int			endian;
-	void		*img;
-}				t_img;
+	char			*data;
+	int				bpp;
+	int				size_line;
+	int				endian;
+	void			*img;
+}					t_img;
 
-typedef struct	s_point
+typedef struct		s_env
 {
-	int			x;
-	int			y;
-	int			z;
-	void		*next;
-}				t_point;
+	void			*mlx;
+	void			*win_iso;
+	t_img			*img_iso;
+	int				**map;
+}					t_env;
 
-typedef struct	s_env
-{
-	void		*mlx;
-	void		*win_iso;
-	t_img		*img_iso;
-	t_point		*map_iso;
-	double		const_x_iso;
-	double		const_y_iso;
-	void		*win_para;
-	t_img		*img_para;
-	t_point		*map_para;
-	double		const_para;
-	double		zoom_z;
-	//t_key		key;
-}				t_env;
-
-typedef struct	s_line
-{
-	char		*line;
-	int			len;
-	void		*prev;
-	void		*next;
-}				t_line;
-
-void	env(t_env *e);
+void	init_env(t_env *e);
+void	getpoints(int fd, t_env *e);
 #endif
