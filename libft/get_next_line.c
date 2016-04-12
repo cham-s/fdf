@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "libft/includes/libft.h"
+#include "libft.h"
 #include <sys/types.h>
 #include <fcntl.h>
 #include <sys/uio.h>

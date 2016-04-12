@@ -1,66 +1,68 @@
 #include "fdf.h"
 
-void	pixel_put_image(char *datam t_img *img, int x, int y)
-{
-	int z;
 
-	z = 0xff0000;
-	((int *) data)[SIZE_PARA_WIDTH * y + z] = z;
-}
-
-t_point	*3d_iso(t_env *e)
+void	first_case(t_bres *b, t_image *img, t_point *p1)
 {
-	t_point 	*begin;
-	begin = e->map_iso;
-	while (e->map_iso)
+	int	i;
+
+	i = 0;
+	while (i <= b->c_dx)
 	{
-		e->map_iso->x -= e->const_x_iso * e->map_iso->x - e->const_y_iso * e->map_iso->y;
-		e->map_iso->y -= e->map_iso->z + (e->const_x_iso / 2) * e->map_iso->x + e->const_y_iso / 2;
-		e->map_iso = e->map_iso->next;
+
+		if (p1->x < WIDTH && p1->y < HEIGHT)
+			if (p1->x >= 0 && p1->y >= 0)
+				pixel_put_image(img, p1);
+		i++;
+		p1->x += b->x_incr;
+		b->ex -= b->dy;
+		if (b->ex < 0)
+		{
+			p1->y += b->y_incr;
+			b->ex += b->dx;
+		}
 	}
-	e->map_iso = begin;
-	return (e->map_iso);
 }
 
-t_point	*3d_para(t_env *e)
+void	second_case(t_bres *b, t_image *img, t_point *p1)
 {
-	t_point 	*begin;
-	begin = e->map_para;
-	while (e->map_para)
+	int	i;
+
+	i = 0;
+	while (i <= b->c_dy)
 	{
-		e->map_para->x -= e->const_para * e->map_para->z;
-		e->map_para->y -= (e->const_para / 2) * e->map_para->z;
-		e->map_para = e->map_para->next;
+		if (p1->x < WIDTH && p1->y < HEIGHT)
+			if (p1->x >= 0 && p1->y >= 0)
+				pixel_put_image(img, p1);
+		i++;
+		p1->y += b->y_incr;
+		b->ey -= b->dx;
+		if (b->ey < 0)
+		{
+			p1->x += b->x_incr;
+			b->ey += b->dy;
+		}
 	}
-	e->map_para = begin;
-	return (e->map_para);
 }
 
-void	draw_iso(t_env *e, 0, 0)
+void	draw_line(t_image *img, t_point p1, t_point p2)
 {
-	t_point 	*begin;
+	t_bres	b;
 
-	begin = e->map_iso;
-	e->map_iso =  3d_iso(e);
-	while (e->map_iso)
-	{
-		pixel_put_image(e->img_iso->data, e->img_iso->img, e->map_iso->x, e->map_iso->y);
-		e->map_iso = e->map_iso->next;
-	}
-	e->map_iso = begin;
-	mlx_put_image_window(e->mlx, e->win_iso, e-img_iso->img, 0, 0);
+	b.ex = abs(p2.x - p1.x);
+	b.ey = abs(p2.y - p1.y);
+	b.dx = b.ex * 2;
+	b.dy = b.ey * 2;
+	b.c_dx = b.ex;
+	b.c_dy = b.ey;
+	b.x_incr = 1;
+	b.y_incr = 1;
+	if (p1.x > p2.x)
+		b.x_incr = -1;
+	if (p1.y > p2.y)
+		b.y_incr = -1;
+	if (b.c_dx >= b.c_dy)
+		first_case(&b, img, &p1);
+	else if (b.c_dx <= b.c_dy)
+		second_case(&b, img, &p1);
 }
 
-void	draw_para(t_env *e, 0, 0)
-{
-	t_point *begin;
-	begin = e->map_para;
-	e->map_para = 3d_para(e);
-	while (e->map_para)
-	{
-		pixel_put_image(e->img_para->data, e->img_para->img, e->map_para->x, e->map_para->y);
-		e->map_para = e->map_para->next;
-	}
-	e->map_para = begin;
-	mlx_put_image_window(e->mlx, e->win_para, e-img_para->img, 0, 0);
-}

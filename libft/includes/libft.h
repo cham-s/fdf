@@ -108,5 +108,7 @@ t_bool				ft_stronlyhas(const char *s, char c);
 size_t				size_to_allocate(const char *s, char c);
 char				**ft_splitspaces(char const *s);
 size_t				ft_tablen(char **tab);
+int					tab_len(char **tab);
+void				tab_free(char **tab);
 
 #endif

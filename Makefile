@@ -4,10 +4,10 @@ LIB = libft/libft.a
 FLAGS = -g -Wall -Werror -Wextra 
 LIBGRPH = -L./minilibx_macos -lmlx -framework OpenGL -framework AppKit
 INCLUDES = -I includes -I libft/includes -I minilibx_macos
-OBJS = main.o init_env.o parser.o parse.o
+OBJS = main.o draw.o parsing.o getpoint.o line.o matrix.o handler.o
 .PHONY: all clean fclean re
 
-VPATH = sources/ minilibx_macos
+VPATH = sources/:minilibx_macos
 
 all: $(NAME)
 
