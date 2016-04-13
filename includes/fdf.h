@@ -10,11 +10,12 @@
 # include "libft.h"
 # include "keyboard.h"
 
-# define RED 0xFF0000
-# define GREEN 0x00FF00
-# define BLUE 0x0000FF
-# define WHITE 0xFFFFFF
-# define BLACK 0x000000
+# define RED	0xFF0000
+# define GREEN	0x00FF00
+# define BLUE	0x0000FF
+# define WHITE	0xFFFFFF
+# define BLACK	0x000000
+# define GREY	0x585957
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -64,10 +65,13 @@ typedef struct			s_context
 	void				*mlx_ptr;
 	void				*win_ptr;
 	void				*img_ptr;
-	t_image	*img;
+	t_image				*img;
 	t_coord				*coord;
 	int					gap;
 	int					c_height;
+	int					line_color;
+	int					bg_color;
+	int					*colors;
 }						t_context;
 
 void					height(t_coord *coord, int n_y);
@@ -92,5 +96,8 @@ int						handler(int keycode, void *param);
 void					count_coord(int *fd, t_coord *coord);
 void					check_ret_gnl(int *fd, char *line);
 void					menu(t_context *c);
+void					pixel_put_image_color(t_image *img, t_point *p, int color);
+void					pixel_put_image_color(t_image *img, t_point *p, int color);
+void					set_background(int color, t_image *img);
 
 #endif

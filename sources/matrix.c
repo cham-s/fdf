@@ -98,16 +98,21 @@ void	zoom(t_coord *coord, int gap, int c_height)
 	int v;
 	int x;
 	int y;
+	int orx;
+	int ory;
 
 	v = 0;
 	x = 0;
 	y = 0;
+	orx = coord->verteces[v]->x;
+	ory = coord->verteces[v]->y;
+
 	while (y < coord->y_point)
 	{
 		while (x < coord->x_point)
 		{
-			coord->verteces[v]->x = ((x * gap) - (y * gap)) + ORIGIN_X;
-			coord->verteces[v]->y = ((x * gap) + (y * gap)) / 2 + ORIGIN_Y - (coord->verteces[v]->h * c_height);
+			coord->verteces[v]->x = ((x * gap) - (y * gap)) + orx;
+			coord->verteces[v]->y = ((x * gap) + (y * gap)) / 2 + ory - (coord->verteces[v]->h * c_height);
 			v++;
 			x++;
 		}
