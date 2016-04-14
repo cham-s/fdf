@@ -1,3 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   keyboard.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/04/14 18:33:11 by cattouma          #+#    #+#             */
+/*   Updated: 2016/04/14 18:33:13 by cattouma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef KEYBOARD_H
+# define KEYBOARD_H
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
 # define KEY_UP 126
@@ -94,3 +108,4 @@
 # define KEY_NUM_POINT 65
 # define KEY_NUM_MINUS 78
 # define KEY_NUM_PLUS 69
+#endif

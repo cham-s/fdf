@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   getpoint.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/04/14 16:49:37 by cattouma          #+#    #+#             */
+/*   Updated: 2016/04/14 18:30:43 by cattouma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-void	init_coord(char *file_name, t_context *c)
+void	init_coord(char *file_name, t_co *c)
 {
 	char	*line;
 	int		i;
@@ -22,35 +34,31 @@ void	init_coord(char *file_name, t_context *c)
 		free(line);
 	}
 	check_ret_gnl(&fd, line);
-	c->coord->total_points = x_len * i;;
+	c->coord->to_pts = x_len * i;
 	c->coord->y_point = i;
 	close(fd);
 }
 
-void	stock_coord(char *file_name, t_context *c)
+void	get_points(t_co *c, int *fd, char *line)
 {
-	int		fd;
-	char	*line;
-	char	**split;
 	int		x;
 	int		y;
 	int		v;
+	char	**split;
 
 	x = 0;
 	y = 0;
 	v = 0;
-	init_coord(file_name, c);
-	fd = open(file_name, O_RDONLY);
-	c->coord->verteces = (t_point **)malloc(sizeof(t_point *) * c->coord->total_points);
-	while (get_next_line(fd, &line) > 0)
+	while (get_next_line(*fd, &line) > 0)
 	{
 		split = ft_strsplit(line, ' ');
 		while (x < c->coord->x_point)
 		{
-			c->coord->verteces[v] = (t_point *)malloc(sizeof(t_point));
-			c->coord->verteces[v]->h = ft_atoi(split[x]);
-			c->coord->verteces[v]->x = ((x * c->gap) - (y * c->gap)) + ORIGIN_X;
-			c->coord->verteces[v]->y = ((x * c->gap) + (y * c->gap)) / 2 + ORIGIN_Y - (c->coord->verteces[v]->h * c->c_height);
+			c->coord->vert[v] = (t_point *)malloc(sizeof(t_point));
+			c->coord->vert[v]->h = ft_atoi(split[x]);
+			c->coord->vert[v]->x = ((x * c->gap) - (y * c->gap)) + ORIGIN_X;
+			c->coord->vert[v]->y = ((x * c->gap) + (y * c->gap)) / 2 + ORIGIN_Y\
+			- (c->coord->vert[v]->h * c->c_height);
 			v++;
 			x++;
 		}
@@ -59,5 +67,17 @@ void	stock_coord(char *file_name, t_context *c)
 		x = 0;
 		y++;
 	}
+}
+
+void	stock_coord(char *file_name, t_co *c)
+{
+	int		fd;
+	char	*line;
+
+	line = NULL;
+	init_coord(file_name, c);
+	fd = open(file_name, O_RDONLY);
+	c->coord->vert = (t_point **)malloc(sizeof(t_point *) * c->coord->to_pts);
+	get_points(c, &fd, line);
 	close(fd);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   line.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/04/14 17:28:59 by cattouma          #+#    #+#             */
+/*   Updated: 2016/04/14 18:22:33 by cattouma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 void	pixel_put_image(t_image *img, t_point *p)
@@ -50,7 +62,7 @@ void	pixel_put_image_color(t_image *img, t_point *p, int color)
 	}
 }
 
-void	join_x(t_coord *coord, t_image *img)
+void	join_x(t_coord *co, t_image *img)
 {
 	int v;
 	int x;
@@ -59,11 +71,11 @@ void	join_x(t_coord *coord, t_image *img)
 	v = 0;
 	x = 0;
 	y = 0;
-	while (y < coord->y_point - 1)
+	while (y < co->y_point - 1)
 	{
-		while (x < coord->x_point)
+		while (x < co->x_point)
 		{
-			draw_line(img, *(coord->verteces[v]), *(coord->verteces[v + coord->x_point]));
+			draw_line(img, *(co->vert[v]), *(co->vert[v + co->x_point]));
 			v++;
 			x++;
 		}
@@ -72,7 +84,7 @@ void	join_x(t_coord *coord, t_image *img)
 	}
 }
 
-void	join_y(t_coord *coord, t_image *img)
+void	join_y(t_coord *co, t_image *img)
 {
 	int v;
 	int x;
@@ -81,11 +93,11 @@ void	join_y(t_coord *coord, t_image *img)
 	v = 0;
 	x = 0;
 	y = 0;
-	while (y < coord->y_point)
+	while (y < co->y_point)
 	{
-		while (x < coord->x_point - 1)
+		while (x < co->x_point - 1)
 		{
-			draw_line(img, *(coord->verteces[v]), *(coord->verteces[v + 1]));
+			draw_line(img, *(co->vert[v]), *(co->vert[v + 1]));
 			v++;
 			x++;
 		}
@@ -93,24 +105,10 @@ void	join_y(t_coord *coord, t_image *img)
 		y++;
 		v++;
 	}
-
 }
 
-
-void	print_point(t_coord *coord, t_image *img)
+void	print_point(t_coord *co, t_image *img)
 {
-	join_x(coord, img);
-	join_y(coord, img);
-}
-
-void	draw_verteces(t_coord *coord, t_image *img)
-{
-	int v;
-
-	v = 0;
-	while (v < coord->total_points)
-	{
-		pixel_put_image(img, coord->verteces[v]);
-		v++;
-	}
+	join_x(co, img);
+	join_y(co, img);
 }

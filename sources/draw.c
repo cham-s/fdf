@@ -1,5 +1,16 @@
-#include "fdf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/04/14 16:47:41 by cattouma          #+#    #+#             */
+/*   Updated: 2016/04/14 18:29:49 by cattouma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "fdf.h"
 
 void	first_case(t_bres *b, t_image *img, t_point *p1)
 {
@@ -8,7 +19,6 @@ void	first_case(t_bres *b, t_image *img, t_point *p1)
 	i = 0;
 	while (i <= b->c_dx)
 	{
-
 		if (p1->x < WIDTH && p1->y < HEIGHT)
 			if (p1->x >= 0 && p1->y >= 0)
 				pixel_put_image(img, p1);
@@ -66,3 +76,32 @@ void	draw_line(t_image *img, t_point p1, t_point p2)
 		second_case(&b, img, &p1);
 }
 
+void	draw_vert(t_coord *co, t_image *img)
+{
+	int v;
+
+	v = 0;
+	while (v < co->to_pts)
+	{
+		pixel_put_image(img, co->vert[v]);
+		v++;
+	}
+}
+
+void	set_background(int color, t_image *img)
+{
+	t_point p;
+
+	p.x = 0;
+	p.y = 0;
+	while (p.y < HEIGHT)
+	{
+		while (p.x < WIDTH)
+		{
+			pixel_put_image_color(img, &p, color);
+			p.x++;
+		}
+		p.x = 0;
+		p.y++;
+	}
+}

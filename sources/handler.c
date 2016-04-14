@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handler.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/04/14 17:11:26 by cattouma          #+#    #+#             */
+/*   Updated: 2016/04/14 18:22:29 by cattouma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-void	launchfunc(int keycode, t_context *c)
+void	launchfunc(int keycode, t_co *c)
 {
 	if (keycode == KEY_EQUAL)
 		height(c->coord, 2);
@@ -14,7 +26,7 @@ void	launchfunc(int keycode, t_context *c)
 		zoom(c->coord, c->gap, 10);
 	}
 	else if (keycode == KEY_NUM_PLUS)
-		zoom(c->coord, c->gap+=5, 10);
+		zoom(c->coord, c->gap += 5, 10);
 	else if (keycode == KEY_LEFT)
 		translate(c->coord, -5, 0);
 	else if (keycode == KEY_RIGHT)
@@ -24,7 +36,7 @@ void	launchfunc(int keycode, t_context *c)
 	else if (keycode == KEY_DOWN)
 		translate(c->coord, 0, 5);
 	else if (keycode == KEY_NUM_1)
-		rot(c->coord, c->div+=1, c->gap, c->c_height);
+		rot(c->coord, c->div += 1, c->gap, c->c_height);
 	else if (keycode == KEY_NUM_2)
 	{
 		c->div--;
@@ -38,11 +50,11 @@ void	launchfunc(int keycode, t_context *c)
 		rot(c->coord, 1, c->gap, c->c_height);
 }
 
-void	redraw(t_context *c, int key)
+void	redraw(t_co *c, int key)
 {
-	if (key != KEY_LEFT && key != KEY_RIGHT && key != KEY_UP && key != KEY_DOWN 
+	if (key != KEY_LEFT && key != KEY_RIGHT && key != KEY_UP && key != KEY_DOWN
 		&& key != KEY_MIN
-	 	&& key != KEY_NUM_PLUS && key != KEY_NUM_MINUS && 
+		&& key != KEY_NUM_PLUS && key != KEY_NUM_MINUS &&
 		key != KEY_EQUAL && key != KEY_NUM_1 && key != KEY_NUM_2
 		&& key != KEY_F && key != KEY_H)
 		return ;
@@ -59,52 +71,33 @@ void	coord_destroy(t_coord *co)
 	int v;
 
 	v = 0;
-	while (v < co->total_points)
+	while (v < co->to_pts)
 	{
-		free(co->verteces[v]);
+		free(co->vert[v]);
 		v++;
 	}
-	free(co->verteces);
+	free(co->vert);
 }
 
-void	context_destroy(t_context *c)
+void	co_destroy(t_co *c)
 {
 	coord_destroy(c->coord);
 	mlx_destroy_image(c->mlx_ptr, c->img_ptr);
 	mlx_destroy_window(c->mlx_ptr, c->win_ptr);
 }
 
-int		handler(int keycode, void *param)
+int		handler(int keycode, void *pa)
 {
-	if (((t_context *)param)->gap == 0) 
-		((t_context *)param)->gap = 1;
+	if (((t_co *)pa)->gap == 0)
+		((t_co *)pa)->gap = 1;
 	if (keycode == KEY_ESC)
 	{
-		context_destroy(((t_context *)param));
+		co_destroy(((t_co *)pa));
 		exit(EXIT_SUCCESS);
 	}
 	else if (keycode == KEY_SPACE)
-		mlx_clear_window(((t_context *)param)->mlx_ptr, ((t_context *)param)->win_ptr);
+		mlx_clear_window(((t_co *)pa)->mlx_ptr, ((t_co *)pa)->win_ptr);
 	else
-		redraw((t_context *)param, keycode);
+		redraw((t_co *)pa, keycode);
 	return (0);
-}
-
-void	set_background(int color, t_image *img)
-{
-
-	t_point p;
-
-	p.x = 0;
-	p.y = 0;
-	while (p.y < HEIGHT)
-	{
-		while (p.x < WIDTH)
-		{
-			pixel_put_image_color(img, &p, color);
-			p.x++;
-		}
-		p.x = 0;
-		p.y++;
-	}
 }
