@@ -75,6 +75,7 @@ typedef struct			s_context
 	int					div;
 }						t_context;
 
+void					init_context_img(t_context *c, t_image *im);
 void					rot(t_coord *coord, int div, int gap, int c_height);
 void					height(t_coord *coord, int n_y);
 void					translate(t_coord *coord, int x_axis, int y_axis);

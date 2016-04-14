@@ -7,7 +7,12 @@ void	launchfunc(int keycode, t_context *c)
 	else if (keycode == KEY_MIN)
 		height(c->coord, -2);
 	else if (keycode == KEY_NUM_MINUS)
-		zoom(c->coord, c->gap-=5, 10);
+	{
+		c->gap -= 5;
+		if (c->gap == 0 || c->gap < 0)
+			c->gap = 2;
+		zoom(c->coord, c->gap, 10);
+	}
 	else if (keycode == KEY_NUM_PLUS)
 		zoom(c->coord, c->gap+=5, 10);
 	else if (keycode == KEY_LEFT)
@@ -41,8 +46,7 @@ void	redraw(t_context *c, int key)
 		key != KEY_EQUAL && key != KEY_NUM_1 && key != KEY_NUM_2
 		&& key != KEY_F && key != KEY_H)
 		return ;
-	c->img->img_color = mlx_get_color_value(c->mlx_ptr, c->bg_color);
-	print_point(c->coord, c->img);
+	set_background(c->bg_color, c->img);
 	mlx_put_image_to_window(c->mlx_ptr, c->win_ptr, c->img_ptr, 0, 0);
 	c->img->img_color = mlx_get_color_value(c->mlx_ptr, c->line_color);
 	launchfunc(key, c);
