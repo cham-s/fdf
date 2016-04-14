@@ -142,3 +142,31 @@ void	rotate(t_coord *coord, int angle)
 		v++;
 	}
 }
+
+void	rot(t_coord *coord, int div, int gap, int c_height)
+{
+	int v;
+	int x;
+	int y;
+	int orx;
+	int ory;
+
+	v = 0;
+	x = 0;
+	y = 0;
+	orx = coord->verteces[v]->x;
+	ory = coord->verteces[v]->y;
+
+	while (y < coord->y_point)
+	{
+		while (x < coord->x_point)
+		{
+			coord->verteces[v]->x = ((x * gap) - (y * gap)) + orx;
+			coord->verteces[v]->y = ((x * gap) + (y * gap)) / div + ory - (coord->verteces[v]->h * c_height);
+			v++;
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+}

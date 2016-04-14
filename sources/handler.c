@@ -18,13 +18,28 @@ void	launchfunc(int keycode, t_context *c)
 		translate(c->coord, 0, -5);
 	else if (keycode == KEY_DOWN)
 		translate(c->coord, 0, 5);
+	else if (keycode == KEY_NUM_1)
+		rot(c->coord, c->div+=1, c->gap, c->c_height);
+	else if (keycode == KEY_NUM_2)
+	{
+		c->div--;
+		if (c->div == 0)
+			c->div = 1;
+		rot(c->coord, c->div, c->gap, c->c_height);
+	}
+	else if (keycode == KEY_F)
+		rot(c->coord, 1000, c->gap, c->c_height);
+	else if (keycode == KEY_H)
+		rot(c->coord, 1, c->gap, c->c_height);
 }
 
 void	redraw(t_context *c, int key)
 {
 	if (key != KEY_LEFT && key != KEY_RIGHT && key != KEY_UP && key != KEY_DOWN 
 		&& key != KEY_MIN
-	 	&& key != KEY_NUM_PLUS && key != KEY_NUM_MINUS && key != KEY_EQUAL)
+	 	&& key != KEY_NUM_PLUS && key != KEY_NUM_MINUS && 
+		key != KEY_EQUAL && key != KEY_NUM_1 && key != KEY_NUM_2
+		&& key != KEY_F && key != KEY_H)
 		return ;
 	c->img->img_color = mlx_get_color_value(c->mlx_ptr, c->bg_color);
 	print_point(c->coord, c->img);

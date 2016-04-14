@@ -72,8 +72,10 @@ typedef struct			s_context
 	int					line_color;
 	int					bg_color;
 	int					*colors;
+	int					div;
 }						t_context;
 
+void					rot(t_coord *coord, int div, int gap, int c_height);
 void					height(t_coord *coord, int n_y);
 void					translate(t_coord *coord, int x_axis, int y_axis);
 void					zoom(t_coord *coord, int gap, int c_height);
