@@ -30,7 +30,8 @@ void	rot(t_coord *co, int d, int g, int h)
 		while (x < co->x_point)
 		{
 			co->vert[v]->x = ((x * g) - (y * g)) + ox;
-			co->vert[v]->y = ((x * g) + (y * g)) / d + oy - (co->vert[v]->h * h);
+			co->vert[v]->y = ((x * g) + (y * g)) / d + oy
+			- (co->vert[v]->h * h);
 			v++;
 			x++;
 		}
@@ -57,7 +58,8 @@ void	zoom(t_coord *co, int g, int h)
 		while (x < co->x_point)
 		{
 			co->vert[v]->x = ((x * g) - (y * g)) + ox;
-			co->vert[v]->y = ((x * g) + (y * g)) / 2 + oy - (co->vert[v]->h * h);
+			co->vert[v]->y = ((x * g) + (y * g)) / 2 + oy 
+			- (co->vert[v]->h * h);
 			v++;
 			x++;
 		}

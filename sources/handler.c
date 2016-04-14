@@ -72,26 +72,6 @@ void	redraw(t_co *c, int key)
 	mlx_put_image_to_window(c->mlx_ptr, c->win_ptr, c->img_ptr, 0, 0);
 }
 
-void	coord_destroy(t_coord *co)
-{
-	int v;
-
-	v = 0;
-	while (v < co->to_pts)
-	{
-		free(co->vert[v]);
-		v++;
-	}
-	free(co->vert);
-}
-
-void	co_destroy(t_co *c)
-{
-	coord_destroy(c->coord);
-	mlx_destroy_image(c->mlx_ptr, c->img_ptr);
-	mlx_destroy_window(c->mlx_ptr, c->win_ptr);
-}
-
 int		handler(int keycode, void *pa)
 {
 	if (((t_co *)pa)->gap == 0)

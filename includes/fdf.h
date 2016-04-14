@@ -116,5 +116,6 @@ void					pixel_put_image_color(t_image *i, t_point *p, int c);
 void					set_background(int color, t_image *img);
 void					matrix_mult(int mi[3][3], t_point *p);
 void					menu(t_co *c);
+void					co_destroy(t_co *c);
 
 #endif
