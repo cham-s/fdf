@@ -1,0 +1,14 @@
+Norme: ./sources/draw.c
+Norme: ./sources/init.c
+Error (line 39): line has 84 characters
+Norme: ./sources/main.c
+Norme: ./sources/getpoint.c
+Error (line 42): function get_points has 26 lines
+Norme: ./sources/handler.c
+Error (line 15): function launchfunc has 34 lines
+Norme: ./sources/parsing.c
+Norme: ./sources/matrix.c
+Norme: ./sources/transfo.c
+Error (line 33): line has 96 characters
+Error (line 60): line has 94 characters
+Norme: ./sources/line.c
