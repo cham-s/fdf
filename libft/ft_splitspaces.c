@@ -11,7 +11,8 @@ static size_t	to_allocate(const char *s)
 	{
 		while (ft_isspace(*s))
 			s++;
-		if ((*s && (!ft_isspace(*s))) && ((ft_isspace(*(s + 1))) || *(s + 1) == '\0'))
+		if ((*s && (!ft_isspace(*s))) && ((ft_isspace(*(s + 1))) ||
+			*(s + 1) == '\0'))
 			size++;
 		if (*s)
 			s++;

@@ -39,27 +39,25 @@ void	init_coord(char *file_name, t_co *c)
 	close(fd);
 }
 
-void	get_points(t_co *c, int *fd, char *line)
+void	get_points(t_co *c, int *fd, char *line, int *v)
 {
 	int		x;
 	int		y;
-	int		v;
 	char	**split;
 
 	x = 0;
 	y = 0;
-	v = 0;
 	while (get_next_line(*fd, &line) > 0)
 	{
 		split = ft_strsplit(line, ' ');
 		while (x < c->coord->x_point)
 		{
-			c->coord->vert[v] = (t_point *)malloc(sizeof(t_point));
-			c->coord->vert[v]->h = ft_atoi(split[x]);
-			c->coord->vert[v]->x = ((x * c->gap) - (y * c->gap)) + ORIGIN_X;
-			c->coord->vert[v]->y = ((x * c->gap) + (y * c->gap)) / 2 + ORIGIN_Y\
-			- (c->coord->vert[v]->h * c->c_height);
-			v++;
+			c->coord->vert[*v] = (t_point *)malloc(sizeof(t_point));
+			c->coord->vert[*v]->h = ft_atoi(split[x]);
+			c->coord->vert[*v]->x = ((x * c->gap) - (y * c->gap)) + ORIGIN_X;
+			c->coord->vert[*v]->y = ((x * c->gap) + (y * c->gap)) / 2 + ORIGIN_Y\
+			- (c->coord->vert[*v]->h * c->c_height);
+			*v += 1;
 			x++;
 		}
 		tab_free(split);
@@ -73,11 +71,13 @@ void	stock_coord(char *file_name, t_co *c)
 {
 	int		fd;
 	char	*line;
+	int		v;
 
+	v = 0;
 	line = NULL;
 	init_coord(file_name, c);
 	fd = open(file_name, O_RDONLY);
 	c->coord->vert = (t_point **)malloc(sizeof(t_point *) * c->coord->to_pts);
-	get_points(c, &fd, line);
+	get_points(c, &fd, line, &v);
 	close(fd);
 }

@@ -12,25 +12,25 @@
 
 #include "fdf.h"
 
-void	rot(t_coord *coord, int div, int gap, int c_height)
+void	rot(t_coord *co, int d, int g, int h)
 {
 	int v;
 	int x;
 	int y;
-	int orx;
-	int ory;
+	int ox;
+	int oy;
 
 	v = 0;
 	x = 0;
 	y = 0;
-	orx = co->vert[v]->x;
-	ory = co->vert[v]->y;
+	ox = co->vert[v]->x;
+	oy = co->vert[v]->y;
 	while (y < co->y_point)
 	{
 		while (x < co->x_point)
 		{
-			co->vert[v]->x = ((x * gap) - (y * gap)) + orx;
-			co->vert[v]->y = ((x * gap) + (y * gap)) / div + ory - (co->vert[v]->h * c_height);
+			co->vert[v]->x = ((x * g) - (y * g)) + ox;
+			co->vert[v]->y = ((x * g) + (y * g)) / d + oy - (co->vert[v]->h * h);
 			v++;
 			x++;
 		}
@@ -39,25 +39,25 @@ void	rot(t_coord *coord, int div, int gap, int c_height)
 	}
 }
 
-void	zoom(t_coord *coord, int gap, int c_height)
+void	zoom(t_coord *co, int g, int h)
 {
 	int v;
 	int x;
 	int y;
-	int orx;
-	int ory;
+	int ox;
+	int oy;
 
 	v = 0;
 	x = 0;
 	y = 0;
-	orx = co->vert[v]->x;
-	ory = co->vert[v]->y;
+	ox = co->vert[v]->x;
+	oy = co->vert[v]->y;
 	while (y < co->y_point)
 	{
 		while (x < co->x_point)
 		{
-			co->vert[v]->x = ((x * gap) - (y * gap)) + orx;
-			co->vert[v]->y = ((x * gap) + (y * gap)) / 2 + ory - (co->vert[v]->h * c_height);
+			co->vert[v]->x = ((x * g) - (y * g)) + ox;
+			co->vert[v]->y = ((x * g) + (y * g)) / 2 + oy - (co->vert[v]->h * h);
 			v++;
 			x++;
 		}
@@ -66,7 +66,7 @@ void	zoom(t_coord *coord, int gap, int c_height)
 	}
 }
 
-void	translate(t_coord *coord, int x_axis, int y_axis)
+void	translate(t_coord *co, int x_axis, int y_axis)
 {
 	int matrix[3][3];
 	int v;

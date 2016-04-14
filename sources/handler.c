@@ -12,6 +12,27 @@
 
 #include "fdf.h"
 
+void	laun2(int *keycode, t_co *c)
+{
+	if (*keycode == KEY_UP)
+		translate(c->coord, 0, -5);
+	else if (*keycode == KEY_DOWN)
+		translate(c->coord, 0, 5);
+	else if (*keycode == KEY_NUM_1)
+		rot(c->coord, c->div += 1, c->gap, c->c_height);
+	else if (*keycode == KEY_NUM_2)
+	{
+		c->div--;
+		if (c->div == 0)
+			c->div = 1;
+		rot(c->coord, c->div, c->gap, c->c_height);
+	}
+	else if (*keycode == KEY_F)
+		rot(c->coord, 1000, c->gap, c->c_height);
+	else if (*keycode == KEY_H)
+		rot(c->coord, 1, c->gap, c->c_height);
+}
+
 void	launchfunc(int keycode, t_co *c)
 {
 	if (keycode == KEY_EQUAL)
@@ -31,23 +52,8 @@ void	launchfunc(int keycode, t_co *c)
 		translate(c->coord, -5, 0);
 	else if (keycode == KEY_RIGHT)
 		translate(c->coord, 5, 0);
-	else if (keycode == KEY_UP)
-		translate(c->coord, 0, -5);
-	else if (keycode == KEY_DOWN)
-		translate(c->coord, 0, 5);
-	else if (keycode == KEY_NUM_1)
-		rot(c->coord, c->div += 1, c->gap, c->c_height);
-	else if (keycode == KEY_NUM_2)
-	{
-		c->div--;
-		if (c->div == 0)
-			c->div = 1;
-		rot(c->coord, c->div, c->gap, c->c_height);
-	}
-	else if (keycode == KEY_F)
-		rot(c->coord, 1000, c->gap, c->c_height);
-	else if (keycode == KEY_H)
-		rot(c->coord, 1, c->gap, c->c_height);
+	else
+		laun2(&keycode, c);
 }
 
 void	redraw(t_co *c, int key)

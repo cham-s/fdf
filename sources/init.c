@@ -36,7 +36,8 @@ void	init_co_img(t_co *c, t_image *im)
 	c->line_color = WHITE;
 	c->mlx_ptr = mlx_init();
 	c->img_ptr = mlx_new_image(c->mlx_ptr, WIDTH, HEIGHT);
-	im->data = mlx_get_data_addr(c->img_ptr, &im->bpp, &im->sizeline, &im->endian);
+	im->data = mlx_get_data_addr(c->img_ptr, &im->bpp, &im->sizeline,
+	&im->endian);
 	im->img_color = mlx_get_color_value(c->mlx_ptr, c->line_color);
 	c->img = im;
 	c->win_ptr = mlx_new_window(c->mlx_ptr, WIDTH, HEIGHT, "FDF");
