@@ -1,7 +1,7 @@
 NAME = fdf 
 CC = clang
 LIB = libft/libft.a
-FLAGS = -g -Wall -Werror -Wextra 
+FLAGS = -g -Wall -Werror -Wextra -Ofast 
 LIBGRPH = -L./minilibx_macos -lmlx -framework OpenGL -framework AppKit
 INCLUDES = -I includes -I libft/includes -I minilibx_macos
 OBJS = main.o draw.o parsing.o getpoint.o line.o matrix.o handler.o init.o transfo.o

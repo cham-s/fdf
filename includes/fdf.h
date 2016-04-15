@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 18:33:46 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/15 16:46:49 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/15 22:42:31 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void					init_co_img(t_co *c, t_image *im);
 void					rot(t_coord *coord, int div, int gap, int c_height);
 void					height(t_coord *coord, int n_y);
 void					translate(t_coord *coord, int x_axis, int y_axis);
-void					zoom(t_coord *coord, int gap, int c_height);
+void					zoom(t_coord *coord, int gap, int c_height, int d);
 void					scale(t_coord *coord, float x_axis, float y_axis);
 void					join_x(t_coord *coord, t_image *img);
 void					join_y(t_coord *coord, t_image *img);
@@ -126,5 +126,6 @@ void					set_background(t_color *color, t_image *img);
 void					matrix_mult(int mi[3][3], t_point *p);
 void					menu(t_co *c);
 void					co_destroy(t_co *c);
+void					rotate(t_coord *co, int angle);
 
 #endif

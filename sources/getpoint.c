@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 16:49:37 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/15 15:17:50 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/15 22:50:17 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	get_points(t_co *c, int *fd, char *line, int *v)
 			c->coord->vert[*v] = (t_point *)malloc(sizeof(t_point));
 			c->coord->vert[*v]->h = ft_atoi(split[x]);
 			c->coord->vert[*v]->x = ((x * c->gap) - (y * c->gap)) + ORIGIN_X;
-			c->coord->vert[*v]->y = ((x * c->gap) + (y * c->gap)) / 2
+			c->coord->vert[*v]->y = ((x * c->gap) + (y * c->gap)) / c->div
 			+ ORIGIN_Y - (c->coord->vert[*v]->h * c->c_height);
 			*v += 1;
 			x++;

@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:24:35 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/15 16:02:38 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/15 22:37:49 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int ac, char **av)
 	check_args(ac, av[1]);
 	c.gap = 10;
 	c.c_height = 10;
+	c.div = 2;
 	stock_coord(av[1], &c);
 	init_co_img(&c, &im);
 	mlx_put_image_to_window(c.mlx_ptr, c.win_ptr, c.img_ptr, 0, 0);

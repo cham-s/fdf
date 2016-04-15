@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:11:26 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/15 16:07:49 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/15 22:43:47 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,16 @@ void	launchfunc(int keycode, t_co *c)
 		height(c->coord, -2);
 	else if (keycode == KEY_NUM_MINUS)
 	{
-		c->gap -= 5;
+		c->gap -= 2;
 		if (c->gap == 0 || c->gap < 0)
-			c->gap = 2;
-		zoom(c->coord, c->gap, 10);
+			c->gap = 1;
+		c->c_height -= 2;
+		if (c->c_height == 0 || c->c_height < 0)
+			c->c_height = 1;
+		zoom(c->coord, c->gap, c->c_height, c->div);
 	}
 	else if (keycode == KEY_NUM_PLUS)
-		zoom(c->coord, c->gap += 5, 10);
+		zoom(c->coord, c->gap += 2, c->c_height += 2, c->div);
 	else if (keycode == KEY_LEFT)
 		translate(c->coord, -5, 0);
 	else if (keycode == KEY_RIGHT)
