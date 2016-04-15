@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 15:41:28 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/14 18:28:24 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/15 15:17:25 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	zoom(t_coord *co, int g, int h)
 		while (x < co->x_point)
 		{
 			co->vert[v]->x = ((x * g) - (y * g)) + ox;
-			co->vert[v]->y = ((x * g) + (y * g)) / 2 + oy 
+			co->vert[v]->y = ((x * g) + (y * g)) / 2 + oy
 			- (co->vert[v]->h * h);
 			v++;
 			x++;
