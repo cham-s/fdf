@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 16:47:41 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/14 18:29:49 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/15 16:00:57 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	draw_vert(t_coord *co, t_image *img)
 	}
 }
 
-void	set_background(int color, t_image *img)
+void	set_background(t_color *color, t_image *img)
 {
 	t_point p;
 

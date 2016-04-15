@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 18:33:46 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/14 18:35:36 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/15 16:46:49 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,14 @@ typedef	struct			s_bres
 	int					ey;
 }						t_bres;
 
+typedef	struct			s_color
+{
+	char r;
+	char g;
+	char b;
+	char alpha;
+}						t_color;
+
 typedef struct			s_point
 {
 	int					x;
@@ -83,7 +91,7 @@ typedef struct			s_co
 	int					gap;
 	int					c_height;
 	int					line_color;
-	int					bg_color;
+	t_color				bg_color;
 	int					*colors;
 	int					div;
 }						t_co;
@@ -112,8 +120,9 @@ int						handler(int keycode, void *param);
 void					count_coord(int *fd, t_coord *coord);
 void					check_ret_gnl(int *fd, char *line);
 void					menu(t_co *c);
-void					pixel_put_image_color(t_image *i, t_point *p, int c);
-void					set_background(int color, t_image *img);
+void					pixel_put_image_color(t_image *i, t_point *p,
+						t_color *c);
+void					set_background(t_color *color, t_image *img);
 void					matrix_mult(int mi[3][3], t_point *p);
 void					menu(t_co *c);
 void					co_destroy(t_co *c);

@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:11:26 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/14 18:22:29 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/15 16:07:49 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,13 @@ void	redraw(t_co *c, int key)
 		key != KEY_EQUAL && key != KEY_NUM_1 && key != KEY_NUM_2
 		&& key != KEY_F && key != KEY_H)
 		return ;
-	set_background(c->bg_color, c->img);
+	set_background(&c->bg_color, c->img);
 	mlx_put_image_to_window(c->mlx_ptr, c->win_ptr, c->img_ptr, 0, 0);
 	c->img->img_color = mlx_get_color_value(c->mlx_ptr, c->line_color);
 	launchfunc(key, c);
 	print_point(c->coord, c->img);
 	mlx_put_image_to_window(c->mlx_ptr, c->win_ptr, c->img_ptr, 0, 0);
+	menu(c);
 }
 
 int		handler(int keycode, void *pa)

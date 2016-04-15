@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:11:17 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/14 18:23:30 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/15 16:21:18 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,29 @@
 
 void	menu(t_co *c)
 {
-	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 10, WHITE, "Esc = Exit");
-	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 25, WHITE, "+   = Zoom in");
-	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 40, WHITE, "-   = Zoom out");
-	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 55, WHITE, "R   = Reset");
-	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 70, WHITE, "P   = Level +");
-	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 85, WHITE, "O   = Level -");
-	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 100, WHITE, ">   = Move Right");
-	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 115, WHITE, "<   = Move Left");
-	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 130, WHITE, "^   = Move Up");
-	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 145, WHITE, "v   = Move Down");
-	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 160, WHITE, "T  = Rotate Up");
-	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 175, WHITE, "G  = Rotate Down");
-	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 190, WHITE, "1  = Front view");
-	mlx_string_put(c->mlx_ptr, c->win_ptr, 15, 205, WHITE, "2  = Top view");
+	int s;
+
+	s = WIDTH - 200;
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 10, WHITE, "Esc: Exit");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 25, WHITE, "+: Zoom in");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 40, WHITE, "-: Zoom out");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 55, WHITE, "R: Reset");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 70, WHITE, "P: Lvl +");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 85, WHITE, "O: Lvl -");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 100, WHITE, "Arrows: Move");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 115, WHITE, "F : Front View ");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 130, WHITE, "H : Top View");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 145, WHITE, "P Num 1: Rot Up");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 160, WHITE, "P Num 2: Rot Down");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 175, WHITE, "P Num +: Z In");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 190, WHITE, "P Num - : Z Out");
 }
 
 void	init_co_img(t_co *c, t_image *im)
 {
-	c->bg_color = SPEBLUE;
+	c->bg_color.r = 125;
+	c->bg_color.g = 25;
+	c->bg_color.b = 53;
 	c->line_color = WHITE;
 	c->mlx_ptr = mlx_init();
 	c->img_ptr = mlx_new_image(c->mlx_ptr, WIDTH, HEIGHT);
@@ -41,7 +45,7 @@ void	init_co_img(t_co *c, t_image *im)
 	im->img_color = mlx_get_color_value(c->mlx_ptr, c->line_color);
 	c->img = im;
 	c->win_ptr = mlx_new_window(c->mlx_ptr, WIDTH, HEIGHT, "FDF");
-	set_background(c->bg_color, c->img);
+	set_background(&c->bg_color, c->img);
 	print_point(c->coord, im);
 }
 
